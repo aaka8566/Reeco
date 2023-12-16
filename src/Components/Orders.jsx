@@ -13,9 +13,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { getorder } from '../Redux/action';
 import Singleorder from './Singleorder';
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
+
   
 const Orders = () => {
     const [islength,setlength]=React.useState([]);
@@ -56,7 +54,7 @@ React.useEffect(()=>{
             <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Price</TableCell>
             <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Quantity</TableCell>
             <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Total</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"6%" }} align="left">Status</TableCell>
+            <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left">Status</TableCell>
             <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left"></TableCell>
           </TableRow>
         </TableHead>

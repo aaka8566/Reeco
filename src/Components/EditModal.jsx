@@ -108,7 +108,7 @@ handleCloseedit();
                     <AddIcon/>
                     </Box>
                     </Box>
-            <Input onChange={(e)=>updquantity.current=e.target.value} name='quantity' sx={inputstyle} size="sm" placeholder="Search..." value={updquantity.current} disableUnderline={true}/>
+            <Input name='quantity' sx={inputstyle} size="sm" placeholder="Search..." value={updquantity.current} disableUnderline={true}/>
             <Box flexGrow={1} sx={{display:"flex",justifyContent:"center"}}>
             <Box sx={{borderRadius:"1rem",backgroundColor:"rgb(0,128,0)",color:"white"}} onClick={()=>{updquantity.current=updquantity.current-1;setbprice(!bprice)}} >
             <RemoveIcon/>

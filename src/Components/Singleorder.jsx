@@ -33,13 +33,10 @@ const Singleorder = ({props,updated,setupdated}) => {
               <TableCell align="left">{props.price}</TableCell>
               <TableCell align="left">{props.quantity}</TableCell>
               <TableCell align="left">{props.quantity*props.price}</TableCell>
-              <TableCell align="left">
+              <TableCell align="center" >
             {props.requiredstatus!==null&&
-            <Button sx={{'&:hover':{backgroundColor:"rgb(61,202,114)"},color:"white",backgroundColor:`${props.requiredstatus=='approved'?"green":props.requiredstatus=="needed"?"orange":props.requiredstatus=="urgent"?"red":"green"}`}}>{props.requiredstatus}</Button>
+            <Button sx={{'&:hover':{backgroundColor:"rgb(61,202,114)"},width:"6rem",color:"white",backgroundColor:`${props.requiredstatus=='approved'?"green":props.requiredstatus=="needed"?"orange":props.requiredstatus=="urgent"?"red":"green"}`}}><Box sx={{overflow:"hidden",height:"1.5rem"}}>{props.requiredstatus}</Box></Button>
             }
-            {/* {props.updationstatus!==null&&
-            <Button sx={{'&:hover':{backgroundColor:"rgb(61,202,114)"},color:"white",backgroundColor:'green',fontSize:"0.8rem"}}>{props.updationstatus}</Button>
-            }   */}
               </TableCell>
               <TableCell align="left">
                 <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",color:"green"}}>
