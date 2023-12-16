@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector,useDispatch } from 'react-redux';
 import { getorder } from '../Redux/action';
 import Singleorder from './Singleorder';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
   
 const Orders = () => {
@@ -20,6 +20,7 @@ const Orders = () => {
 const {orders,isloaded}=useSelector((state)=>state.orderreducer);
 const dispatch=useDispatch();
 const [updated,setupdated]=React.useState(false);
+// const []
 
 React.useEffect(()=>{
     dispatch(getorder())
@@ -43,28 +44,34 @@ React.useEffect(()=>{
     </Box>
 
 
-    <Box>
+    <Box sx={{width:"100%"}}>
+  {islength.length>0?
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead  >
-          <TableRow >
-            <TableCell sx={{ fontWeight:"700",width:"10%" }}></TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"30%" }} align="left">Product Name</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"15%" }} align="left">Brand</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Price</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Quantity</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Total</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left">Status</TableCell>
-            <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left"></TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {islength.length>0&&islength.map((row,i) => (
-         <Singleorder key={i} props={row} updated={updated} setupdated={setupdated}/>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableHead  >
+        <TableRow >
+          <TableCell sx={{ fontWeight:"700",width:"10%" }}></TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"30%" }} align="left">Product Name</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"15%" }} align="left">Brand</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Price</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Quantity</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Total</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left">Status</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left"></TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {islength.length>0&&islength.map((row,i) => (
+       <Singleorder islength={islength} key={i} props={row} updated={updated} setupdated={setupdated}/>
+        ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+  :
+  <Box sx={{ display: 'flex' ,justifyContent:"center",border:"0px solid green"}}>
+  <CircularProgress />
+</Box>
+  }
     </Box>
     </Box>
   )

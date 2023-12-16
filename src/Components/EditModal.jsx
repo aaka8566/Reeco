@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ClearIcon from '@mui/icons-material/Clear';
-import { Input } from '@mui/material';
+import { Alert, Input } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useDispatch } from 'react-redux';
@@ -38,14 +38,14 @@ const inputstyle={
 }
 
 
-export default function BasicModalEdit({handleOpenedit,handleCloseedit,openedit,setOpenedit,props,updated,setupdated}) {
+export default function BasicModalEdit({handleOpenedit,handleCloseedit,openedit,setOpenedit,props,updated,setupdated,loader,setloader}) {
     // const [updateobj,setupdateobj]=React.useState({});
     const {id,image,productname,brand,price,quantity,requiredstatus}=props;
     const updprice=React.useRef(price);
     const updquantity=React.useRef(quantity);
     const updreason=React.useRef(null);
     const [bprice,setbprice]=React.useState(false);
-
+    const [alert,setalert]=React.useState(false);
     const dispatch=useDispatch();
   
     const update=()=>{
@@ -54,13 +54,18 @@ export default function BasicModalEdit({handleOpenedit,handleCloseedit,openedit,
    updprice.current!=price&&updquantity.current==quantity?obj={"price":updprice.current,"requiredstatus":updreason.current}:
    updprice.current==price&&updquantity.current!=quantity?obj={"quantity":updquantity.current,"requiredstatus":updreason.current}:
    obj={};
-
+   setloader(false);
+   if(Object.keys(obj).length>0&&updreason.current==null){
+    setalert(true);
+    return;
+   }
    dispatch(updateorder(id,obj))
    .then((res)=>{setupdated(!updated);
 updprice.current=price;
 updquantity.current=quantity;
 updreason.current=null;
 handleCloseedit();
+setloader(true);
 })
    .catch((err)=>console.log(err))
     }
@@ -76,7 +81,7 @@ handleCloseedit();
       >
         <Box sx={style}>
           <Box sx={{width:"100%",display:"flex",justifyContent:"end",alignItems:"center",cursor:"pointer"}} onClick={()=>{handleCloseedit();updprice.current=price;
-        updquantity.current=quantity;updreason.current=null;}}>
+        updquantity.current=quantity;updreason.current=null;setalert(false);setloader(true);}}>
           <ClearIcon/>
           </Box>
           <Box>
@@ -91,7 +96,7 @@ handleCloseedit();
           </Box>
          <Box sx={{width:"100%",display:"flex",justifyContent:"space-evenly",alignItems:"center",gap:"2rem"}}>
             <Box sx={{width:"20%"}}>
-                <img width={'100%'} src={image} alt="error" />
+                <img width={'100%'} src={image} alt="error"/>
             </Box>
            <Box sx={{width:"60%"}}>
            <Box sx={{width:"100%",border:"0px solid green",display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"0.8rem"}}>
@@ -139,10 +144,15 @@ handleCloseedit();
             <Button  onClick={()=>{updreason.current="Price is not the same";setbprice(!bprice)}} sx={[buttonstyle,{backgroundColor:`${updreason.current=="Price is not the same"?'green':null}`}]}>Price is not the same</Button>
             <Button  onClick={()=>{updreason.current="Other";setbprice(!bprice)}} sx={[buttonstyle,{backgroundColor:`${updreason.current=="Other"?'green':null}`}]}>Other</Button>
           </Box>
+          {alert?<Box>
+            <Alert variant="outlined" severity="warning">
+  Please select atlest one reason
+</Alert>
+</Box>:null}
           </Box>
           <Box sx={{width:"100%",display:"flex",justifyContent:"end",alignItems:"center",gap:"1.5rem",marginTop:"1.5rem"}}>
             <Button sx={{color:"green",borderRadius:"3rem"}} onClick={()=>{handleCloseedit();updprice.current=price;
-        updquantity.current=quantity;updreason.current=null;}}>Cancel</Button>
+        updquantity.current=quantity;updreason.current=null;setalert(false);setloader(true);}}>Cancel</Button>
             <Button sx={{backgroundColor:"green",borderRadius:"3rem",color:"white",'&:hover':{backgroundColor:"green"}}} onClick={()=>update()}>Send</Button>
           </Box>
         </Box>
