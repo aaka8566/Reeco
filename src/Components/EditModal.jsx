@@ -57,8 +57,9 @@ export default function BasicModalEdit({handleOpenedit,handleCloseedit,openedit,
 
    dispatch(updateorder(id,obj))
    .then((res)=>{setupdated(!updated);
-// updprice.current=price;
-// updquantity.current=quantity;
+updprice.current=price;
+updquantity.current=quantity;
+updreason.current=null;
 handleCloseedit();
 })
    .catch((err)=>console.log(err))
