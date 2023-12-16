@@ -33,7 +33,7 @@ React.useEffect(()=>{
   return (
     <Box sx={{width:"80%",border:"1px solid rgb(211,211,211)",margin:"auto",padding:"3rem 2rem 1rem 2rem",marginTop:"3rem"}}>
     <Box sx={{display:{sm:"flex",md:"flex",lg:"flex"},border:"0px solid rgb(211,211,211)",alignItems:"center",justifyContent:"space-between",width:"100%",marginBottom:"3rem"}}>
-        <Box sx={{color:"black",display:"flex",alignItems:"center",border:"1px solid rgb(211,211,211)",borderRadius:"1rem",padding:"0rem 1rem 0rem 1rem"}}>
+        <Box sx={{color:"black",display:"flex",alignItems:"center",justifyContent:{xs:"space-between",sm:"space-between"},border:"1px solid rgb(211,211,211)",borderRadius:"1rem",padding:"0rem 1rem 0rem 1rem"}}>
         <Input size="sm" placeholder="Search..." disableUnderline={true}/>
         <SearchIcon/>
         </Box>
