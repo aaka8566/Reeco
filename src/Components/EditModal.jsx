@@ -144,7 +144,7 @@ setloader(true);
             <Button  onClick={()=>{updreason.current="Price is not the same";setbprice(!bprice)}} sx={[buttonstyle,{backgroundColor:`${updreason.current=="Price is not the same"?'green':null}`}]}>Price is not the same</Button>
             <Button  onClick={()=>{updreason.current="Other";setbprice(!bprice)}} sx={[buttonstyle,{backgroundColor:`${updreason.current=="Other"?'green':null}`}]}>Other</Button>
           </Box>
-          {alert?<Box>
+          {alert?<Box sx={{paddingTop:"1rem"}}>
             <Alert variant="outlined" severity="warning">
   Please select atlest one reason
 </Alert>

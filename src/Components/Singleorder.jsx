@@ -31,7 +31,7 @@ const Singleorder = ({props,updated,setupdated,islength}) => {
               <TableCell component="th" scope="props">
                 <img width={"100%"} src={props.image} alt="error" />
               </TableCell>
-              <TableCell align="left">{props.productname}</TableCell>
+              <TableCell align="left" ><Box sx={{height:{xs:"4rem",sm:"4rem",md:"6rem"},overflowY:{xs:"hidden",sm:"hidden",md:"scroll"}}}>{props.productname}</Box></TableCell>
               <TableCell align="left">{props.brand}</TableCell>
               <TableCell align="left">{props.price}</TableCell>
               <TableCell align="left">{props.quantity}</TableCell>

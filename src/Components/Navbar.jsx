@@ -17,7 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-const options=["Reeco","Store","Orders","Analytics"];
+const optionss=["Reeco","Store","Orders","Analytics"];
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -61,10 +61,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+const [options,setoptions]=React.useState(null);
+const isoptionsopen=Boolean(options);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+const handleoptionsopen=(e)=>{
+    setoptions(e.currentTarget);
+}
+const handleoptionsclose=()=>{
+    setoptions(null);
+}
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -156,9 +163,79 @@ export default function Navbar() {
     </Menu>
   );
 
+
+  const mobileoptionsid = 'primary-search-options-mobile';
+  const renderMobileoptionsMenu = (
+    <Menu
+      anchorEl={options}
+      anchorOrigin={{
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+      id={mobileoptionsid}
+      keepMounted
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'left',
+      }}
+      open={isoptionsopen}
+      onClose={handleoptionsclose}
+    >
+      <MenuItem>
+        {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton> */}
+        <p>Store</p>
+      </MenuItem>
+      <MenuItem>
+        {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton> */}
+        <p>Orders</p>
+      </MenuItem>
+      <MenuItem>
+        {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="error">
+            <MailIcon />
+          </Badge>
+        </IconButton> */}
+        <p>Analytics</p>
+      </MenuItem>
+      {/* <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem> */}
+      {/* <MenuItem >
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem> */}
+    </Menu>
+  );
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor:"rgb(30,99,63)",padding:"0rem 6rem 0rem 6rem"}}>
+      <AppBar position="static" sx={{backgroundColor:"rgb(30,99,63)",padding:{xs:"0rem 2rem 0rem 2rem",sm:"0rem 3rem 0rem 3rem",md:"0rem 6rem 0rem 6rem"}}}>
         <Toolbar sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           {/* <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:"4rem"}}> */}
             <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",border:"0px solid red"}}>
@@ -167,13 +244,16 @@ export default function Navbar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
+            aria-controls={mobileoptionsid}
+            onClick={handleoptionsopen}
             sx={{ mr: 2,display:{md:"none",sm:"block"} }}
             
           >
             <MenuIcon />
           </IconButton>
-          <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:"1rem"}}>
-          {options.map((el,i)=>(
+          {renderMobileoptionsMenu}
+          <Box sx={{display:{xs:"none",sm:"none",md:"flex",},justifyContent:"space-between",alignItems:"center",gap:"1rem"}}>
+          {optionss.map((el,i)=>(
             <Box key={i} >
           <Typography
           
