@@ -125,7 +125,7 @@ setloader(true);
             <Box sx={{width:"100%",border:"0px solid green",display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:"1rem"}}>
             <Typography sx={optionstyle}>Total</Typography>
             <Box flexGrow={1}/>
-            <Typography sx={{width:"5rem",textAlign:"center"}}>{price*quantity} </Typography>
+            <Typography sx={{width:"5rem",textAlign:"center"}}>{Number(updprice.current)*Number(updquantity.current)} </Typography>
       
             <Box flexGrow={1}/>
             </Box>
