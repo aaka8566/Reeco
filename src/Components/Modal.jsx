@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({open,handleClose,handleOpen,setOpen,food,id,updated,setupdated,setstatuscolor,loader,setloader}) {
+export default function BasicModal({open,handleClose,handleOpen,setOpen,food,id,updated,setupdated,setstatuscolor,loader1,setloader1}) {
 //console.log(open);
 const dispatch=useDispatch();   
   return (
@@ -34,7 +34,7 @@ const dispatch=useDispatch();
          <Typography id="modal-modal-title" variant="h6" component="h2">
             Missing Product
           </Typography>
-          <Box sx={{display:"flex",alignItems:"center",justifyContent:"right",cursor:"pointer"}} onClick={()=>handleClose()}><ClearIcon/></Box>
+          <Box sx={{display:"flex",alignItems:"center",justifyContent:"right",cursor:"pointer"}} onClick={()=>{handleClose();setloader1(true)}}><ClearIcon/></Box>
          </Box>
           <Box>
          
@@ -45,14 +45,14 @@ const dispatch=useDispatch();
          
         
           <Box sx={{width:"100%",display:"flex",alignItems:"center",justifyContent:"right"}}>
-            <Button sx={{color:"blue"}} onClick={()=>{setloader(false);
+            <Button sx={{color:"blue"}} onClick={()=>{setloader1(false);
                 dispatch(updateorder(id,{"requiredstatus":"urgent"}))
-                .then((res)=>{setupdated(!updated);handleClose();setloader(true)})
+                .then((res)=>{setupdated(!updated);handleClose();setloader1(true)})
                 .catch((err)=>{console.log(err);})
             }}>YES</Button>
-            <Button sx={{color:"red"}} onClick={()=>{setloader(false);
+            <Button sx={{color:"red"}} onClick={()=>{setloader1(false);
                 dispatch(updateorder(id,{"requiredstatus":"needed"}))
-                .then((res)=>{setupdated(!updated);handleClose();setloader(true)})
+                .then((res)=>{setupdated(!updated);handleClose();setloader1(true)})
                 .catch((err)=>{console.log(err);})
             }}>NO</Button>
         </Box>

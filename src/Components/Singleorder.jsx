@@ -21,6 +21,7 @@ const Singleorder = ({props,updated,setupdated,islength}) => {
   
     const [statuscolor,setstatuscolor]=React.useState(null); 
     const [loader,setloader]=React.useState(true);
+    const [loader1,setloader1]=React.useState(true);
  const dispatch=useDispatch();   
   return (
     <>
@@ -31,7 +32,7 @@ const Singleorder = ({props,updated,setupdated,islength}) => {
               <TableCell component="th" scope="props">
                 <img width={"100%"} src={props.image} alt="error" />
               </TableCell>
-              <TableCell align="left" ><Box sx={{height:{xs:"4rem",sm:"4rem",md:"6rem"},overflowY:{xs:"hidden",sm:"hidden",md:"scroll"}}}>{props.productname}</Box></TableCell>
+              <TableCell align="left" ><Box sx={{display:"flex",alignItems:{lg:"center"},height:{xs:"4rem",sm:"4rem",md:"5rem"},overflowY:{xs:"hidden",sm:"hidden",md:"hidden"}}}>{props.productname}</Box></TableCell>
               <TableCell align="left">{props.brand}</TableCell>
               <TableCell align="left">{props.price}</TableCell>
               <TableCell align="left">{props.quantity}</TableCell>
@@ -42,20 +43,26 @@ const Singleorder = ({props,updated,setupdated,islength}) => {
                 <Box sx={{overflow:"hidden",height:"1.5rem"}}>{props.requiredstatus}</Box>
                 </Button>:null
             }
-            {!loader?<Box sx={{ display: 'flex' ,justifyContent:"center",border:"0px solid green"}}>
-                        <CircularProgress />
-                      </Box>:null}
               </TableCell>
               <TableCell align="left">
                 <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",cursor:"pointer",color:"green"}}>
+                    {!loader?<Box sx={{ display: 'flex' ,justifyContent:"center",border:"0px solid green"}}>
+                        <CircularProgress />
+                      </Box>:
                     <Box onClick={()=>{setloader(false);
                         dispatch(updateorder(props.id,{"requiredstatus":"approved"}))
                     .then((res)=>{setupdated(!updated);setstatuscolor("green");setloader(true)});
                     }
                     }><DoneIcon/></Box>
-                    <Box sx={{color:"red"}} onClick={()=>handleOpen()}><ClearIcon/></Box>
+                     }
+
+                    {!loader1?
+                    <Box sx={{ display: 'flex' ,justifyContent:"center",border:"0px solid green"}}>
+                    <CircularProgress />
+                  </Box>:
+                    <Box sx={{color:"red"}} onClick={()=>{handleOpen();setloader1(false)}}><ClearIcon/></Box>}
                     
-                    <BasicModal  open={open} loader={loader} setloader={setloader} handleOpen={handleOpen} handleClose={handleClose} setOpen={setOpen} food={props.productname} id={props.id} updated={updated}setupdated={setupdated} />
+                    <BasicModal  open={open} loader1={loader1} setloader1={setloader1} handleOpen={handleOpen} handleClose={handleClose} setOpen={setOpen} food={props.productname} id={props.id} updated={updated}setupdated={setupdated} />
                     <Button sx={{color:"green"}} onClick={()=>{handleOpenedit()}}>EDIT</Button>
                     <BasicModalEdit loader={loader} setloader={setloader} handleOpenedit={handleOpenedit} handleCloseedit={handleCloseedit} openedit={openedit} setOpenedit={setOpenedit} props={props} updated={updated}setupdated={setupdated}/>
                 </Box>

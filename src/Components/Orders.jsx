@@ -32,12 +32,12 @@ React.useEffect(()=>{
 // console.log(islength,orders,"hi");
   return (
     <Box sx={{width:"80%",border:"1px solid rgb(211,211,211)",margin:"auto",padding:"3rem 2rem 1rem 2rem",marginTop:"3rem"}}>
-    <Box sx={{display:{sm:"flex",md:"flex",lg:"flex"},alignItems:"center",justifyContent:"space-between",width:"100%",marginBottom:"3rem"}}>
+    <Box sx={{display:{sm:"flex",md:"flex",lg:"flex"},border:"0px solid rgb(211,211,211)",alignItems:"center",justifyContent:"space-between",width:"100%",marginBottom:"3rem"}}>
         <Box sx={{color:"black",display:"flex",alignItems:"center",border:"1px solid rgb(211,211,211)",borderRadius:"1rem",padding:"0rem 1rem 0rem 1rem"}}>
         <Input size="sm" placeholder="Search..." disableUnderline={true}/>
         <SearchIcon/>
         </Box>
-        <Box sx={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:"2rem",paddingTop:{xs:"2rem"}}}>
+        <Box sx={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:"2rem",marginTop:{xs:"2rem",sm:"0rem"}}}>
         <Button sx={{'&:hover':{backgroundColor:"rgb(61,202,114)"},color:"rgb(30,99,63)",border:"1px solid rgb(30,99,63)",borderRadius:"9rem",padding:"0.5rem 1rem 0.5rem 1rem",textTransform:"none",fontWeight:"700"}}>Add Item</Button>
             <PrintIcon/>
         </Box>
