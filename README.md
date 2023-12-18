@@ -49,17 +49,16 @@
 
 ## Features
 
-- Account Registration and Login Functionality [Using Express.js ].
-- Passowrd hashing and encryption (USing JWT and bcrypt).
-- Filtering functionality on the basis of type,brand ,discount and price.
-- Wishlist and adding product to cart directly from wishlist.
-- Cart for adding products and increasing quantity .
-- Payment via different modes and ordering functionality
-- Order Details and cart as per the logged in user.
-- Admin Login via backend server (restricted route).
-- Admin Panel functionality (fore Editing,Adding and Deleting Products).
-
-
+- On visiting the page we can perform the following functionalities:-
+* > We can toggle the status of the order as accepted if we click on the [ tick ] icon.
+* > If we click on the cross button then a modal will open and there among two options we have to choose one
+    [YES] - Then the status will be updated to URGENT need.
+    [NO]  - Then the status will be updated to NEEDED.
+* > We can also update the quantity and price of the product here by clicking on the edit button which will open a modal
+    where we can see all the details of the product and we can change the price in the input tag and quantity by the buttons [ "+" 
+    and "-". After making all the needed changes we also have to select one reason mandatorily otherwise we cannot proceed further.
+* > After selecting the reason if we click on send the status will be updated to the selected reason and the changes will reflect on 
+    the frontend of the website.
 # Prerequisites :
 
 - Node.js
