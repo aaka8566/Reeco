@@ -53,11 +53,11 @@ React.useEffect(()=>{
           <TableCell sx={{ fontWeight:"700",width:{xs:"15%",sm:"15%",md:"10%"} }}></TableCell>
           <TableCell sx={{ fontWeight:"700",width:"30%" }} align="left">Product Name</TableCell>
           <TableCell sx={{ fontWeight:"700",width:"15%" }} align="left">Brand</TableCell>
-          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Price</TableCell>
-          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Quantity</TableCell>
-          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left">Total</TableCell>
-          <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left">Status</TableCell>
-          <TableCell sx={{ fontWeight:"700",width:"10%" }} align="left"></TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"6%" }} align="left">Price</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"6%" }} align="left">Quantity</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"6%" }} align="left">Total</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"20%" }} align="left">Status</TableCell>
+          <TableCell sx={{ fontWeight:"700",width:"8%" }} align="left"></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

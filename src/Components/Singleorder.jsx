@@ -39,7 +39,7 @@ const Singleorder = ({props,updated,setupdated,islength}) => {
               <TableCell align="left">{props.quantity*props.price}</TableCell>
               <TableCell align="center" >
             {props.requiredstatus!==null?
-            <Button sx={{'&:hover':{backgroundColor:"rgb(61,202,114)"},width:"6rem",color:"white",backgroundColor:`${props.requiredstatus=='approved'?"green":props.requiredstatus=="needed"?"orange":props.requiredstatus=="urgent"?"red":"green"}`}}>
+            <Button sx={{'&:hover':{backgroundColor:"rgb(61,202,114)"},width:"100%",color:"white",backgroundColor:`${props.requiredstatus=='approved'?"green":props.requiredstatus=="needed"?"orange":props.requiredstatus=="urgent"?"red":"green"}`}}>
                 <Box sx={{overflow:"hidden",height:"1.5rem"}}>{props.requiredstatus}</Box>
                 </Button>:null
             }

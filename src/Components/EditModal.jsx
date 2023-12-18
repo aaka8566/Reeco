@@ -45,7 +45,8 @@ export default function BasicModalEdit({handleOpenedit,handleCloseedit,openedit,
     const updquantity=React.useRef(quantity);
     const updreason=React.useRef(null);
     const [bprice,setbprice]=React.useState(false);
-    const [alert,setalert]=React.useState(false);
+    const [alert,setalert]=React.useState(null);
+    const [loader3,setloader3]=React.useState(false);
     const dispatch=useDispatch();
   
     const update=()=>{
@@ -54,9 +55,14 @@ export default function BasicModalEdit({handleOpenedit,handleCloseedit,openedit,
    updprice.current!=price&&updquantity.current==quantity?obj={"price":updprice.current,"requiredstatus":updreason.current}:
    updprice.current==price&&updquantity.current!=quantity?obj={"quantity":updquantity.current,"requiredstatus":updreason.current}:
    obj={};
-   setloader(false);
-   if(Object.keys(obj).length>0&&updreason.current==null){
-    setalert(true);
+   setloader3(false);
+   console.log(Object.keys(obj).length,updreason.current);
+   if(Object.keys(obj).length==0&&(updreason.current==null||updreason.current!=null)){
+    setalert(1);
+    return;
+   }
+   else if(Object.keys(obj).length>0&&updreason.current==null){
+    setalert(2);
     return;
    }
    dispatch(updateorder(id,obj))
@@ -65,7 +71,8 @@ updprice.current=price;
 updquantity.current=quantity;
 updreason.current=null;
 handleCloseedit();
-setloader(true);
+setloader3(true);
+setalert(null);
 })
    .catch((err)=>console.log(err))
     }
@@ -81,7 +88,7 @@ setloader(true);
       >
         <Box sx={style}>
           <Box sx={{width:"100%",display:"flex",justifyContent:"end",alignItems:"center",cursor:"pointer"}} onClick={()=>{handleCloseedit();updprice.current=price;
-        updquantity.current=quantity;updreason.current=null;setalert(false);setloader(true);}}>
+        updquantity.current=quantity;updreason.current=null;setalert(false);setloader3(true);setalert(null)}}>
           <ClearIcon/>
           </Box>
           <Box>
@@ -144,15 +151,20 @@ setloader(true);
             <Button  onClick={()=>{updreason.current="Price is not the same";setbprice(!bprice)}} sx={[buttonstyle,{backgroundColor:`${updreason.current=="Price is not the same"?'green':null}`}]}>Price is not the same</Button>
             <Button  onClick={()=>{updreason.current="Other";setbprice(!bprice)}} sx={[buttonstyle,{backgroundColor:`${updreason.current=="Other"?'green':null}`}]}>Other</Button>
           </Box>
-          {alert?<Box sx={{paddingTop:"1rem"}}>
+          {alert==2?<Box sx={{paddingTop:"1rem"}}>
             <Alert variant="outlined" severity="warning">
   Please select atlest one reason
+</Alert>
+</Box>:null}
+{alert==1?<Box sx={{paddingTop:"1rem"}}>
+            <Alert variant="outlined" severity="warning">
+  Please change at least price or quantity
 </Alert>
 </Box>:null}
           </Box>
           <Box sx={{width:"100%",display:"flex",justifyContent:"end",alignItems:"center",gap:"1.5rem",marginTop:"1.5rem"}}>
             <Button sx={{color:"green",borderRadius:"3rem"}} onClick={()=>{handleCloseedit();updprice.current=price;
-        updquantity.current=quantity;updreason.current=null;setalert(false);setloader(true);}}>Cancel</Button>
+        updquantity.current=quantity;updreason.current=null;setalert(false);setloader3(true);setalert(null);}}>Cancel</Button>
             <Button sx={{backgroundColor:"green",borderRadius:"3rem",color:"white",'&:hover':{backgroundColor:"green"}}} onClick={()=>update()}>Send</Button>
           </Box>
         </Box>
